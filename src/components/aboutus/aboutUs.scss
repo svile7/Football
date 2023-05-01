@@ -1,0 +1,25 @@
+.about-container {
+  .text-container {
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .map-app {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    .map-text {
+      display: block;
+
+      margin-right: 10%;
+      p {
+        margin-top: 50px;
+        a {
+          color: rgb(129, 129, 170);
+        }
+      }
+    }
+  }
+}

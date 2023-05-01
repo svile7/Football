@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "imgUrl": "https://i.otto.de/i/otto/27090d3b-0f6d-55eb-8d81-ec656a52b03a?w=2000&h=2000",
+      "name": "Football shoes",
+      "price": 10.99
+    },
+    {
+      "imgUrl": "https://m.media-amazon.com/images/I/61ugNy9xqaL._UL1280_.jpg",
+      "name": "Football Jersey",
+      "price": 19.99
+    },
+    {
+      "imgUrl": "https://www.11teamsports.com/cdn-cgi/image/format=webp,width=601/de-de/media/09/0b/51/1625606801/10124977-hummel-football-sock-socken-weiss-f9368-204046-fussball-teamsport-textil-socken.png",
+      "name": "Football socks",
+      "price": 5.99
+    },
+    {
+      "imgUrl": "https://www.outfitter.de/dw/image/v2/BBDZ_PRD/on/demandware.static/-/Sites-master-catalog-out/default/dwbda4147d/images/198/198920/2784780-616d667fbc933.jpg?sw=550",
+      "name": "Football shorts",
+      "price": 15.99
+    },
+    {
+      "imgUrl": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4e9f4bf4ae664b0798d4ae6201337d82_9366/Al_Rihla_League_Ball_Weiss_H57791_01_standard.jpg",
+      "name": "Football ball",
+      "price": 100.99
+    }
+  ]
+}
