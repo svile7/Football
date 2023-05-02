@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import Dropdown from "../dropdown.png";
 import {
   getCurrentUserDisplayName,
+  getDisplayNameForPopup,
   signOutUser,
   onAuthStateChangedListener,
 } from "../../firebase/firebase";
@@ -10,11 +11,22 @@ import {
 const Account = () => {
   const [displayName, setDisplayName] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [displayNamePopup, setDisplayNamePopup] = useState(null)
+
+  useEffect(() => {
+    const fetchDisplayNamePopup = async () => {
+      const displayNamePopup = await getDisplayNameForPopup();
+      setDisplayNamePopup(displayNamePopup);
+     
+    };
+    fetchDisplayNamePopup();
+  }, []);
 
   useEffect(() => {
     const fetchDisplayName = async () => {
       const displayName = await getCurrentUserDisplayName();
       setDisplayName(displayName);
+     // console.log(displayName);
     };
     fetchDisplayName();
   }, []);
@@ -37,14 +49,29 @@ const Account = () => {
     }
   };
 
+  const renderDisplayName = () => {
+    if (displayName && !displayNamePopup) {
+      return (
+        <a className="dispalyName" href="#">
+          {displayName}
+        </a>
+      );
+    } else if (displayNamePopup && !displayName) {
+      return (
+        <a className="dispalyName" href="#">
+          {displayNamePopup}
+        </a>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="dropdown">
       <img src={Dropdown} className="dropbtn"></img>
       <div className="dropdown-content">
-        <a className="dispalyName" href="#">
-          {displayName}
-        </a>
-
+        {renderDisplayName()}
         <button onClick={handleLogout}>Logout</button>
       </div>
     </div>

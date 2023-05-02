@@ -8,7 +8,7 @@ import SignUp from "../signup/signUp";
 import Login from "../../login/login";
 import {FailedPassword} from "../../login/login";
 import {AuthContext} from "../../../context/user-context";
-import {getCurrentUserDisplayName} from "../../../firebase/firebase";
+import {getCurrentUserDisplayName, getDisplayNameForPopup} from "../../../firebase/firebase";
 
 const defaultFormFieldssignIn = {
   email: "",
@@ -32,6 +32,7 @@ const SignInForm = () => {
     setIsLoginAcc(true);
     setAuth(true);
   };
+ 
 
   const [isLogin, setIsLogin] = useState(false);
   const loginHandler = () => {
@@ -50,6 +51,11 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+    loginHandler();
+    hideElement();
+    handleSubmitAcc();
+    getDisplayNameForPopup().then(user => console.log(user.displayName));
+    
   };
 
   const [isVisible, setIsVisible] = useState(false);

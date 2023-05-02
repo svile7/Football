@@ -42,6 +42,7 @@ export const auth = getAuth();
 
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
+  
 
 export const addCollectionAndDocuments = async (
   collectionKey,
@@ -92,10 +93,16 @@ export const createUserDocumentFromAuth = async (
     } catch (error) {
       console.log("error creating the user", error.message);
     }
+  } else {
+    // Update the displayName if it is not already set
+    if (!userSnapshot.data().displayName) {
+      await setDoc(userDocRef, { displayName: userAuth.displayName }, { merge: true });
+    }
   }
 
   return userDocRef;
 };
+
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
@@ -116,13 +123,21 @@ export const onAuthStateChangedListener = (callback) =>
 
 export const getCurrentUserDisplayName = async () => {
   const user = auth.currentUser;
+  
   if (user) {
     const userDocRef = doc(db, "users", user.uid);
     const userSnapshot = await getDoc(userDocRef);
+    
     if (userSnapshot.exists()) {
       const {displayName} = userSnapshot.data();
+      
       return displayName;
     }
   }
   return null;
 };
+
+export const getDisplayNameForPopup = async () => {
+  const user = auth.currentUser;
+  return user.displayName;
+}

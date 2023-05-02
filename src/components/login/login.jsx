@@ -1,9 +1,19 @@
 import "./login.scss";
-import {getCurrentUserDisplayName} from "../../firebase/firebase";
+import {getCurrentUserDisplayName, getDisplayNameForPopup} from "../../firebase/firebase";
 import {useState, useEffect} from "react";
 
 const Login = () => {
   const [displayName, setDisplayName] = useState(null);
+  const [displayNamePopup, setDisplayNamePopup] = useState(null)
+
+  useEffect(() => {
+    const fetchDisplayNamePopup = async () => {
+      const displayNamePopup = await getDisplayNameForPopup();
+      setDisplayNamePopup(displayNamePopup);
+     
+    };
+    fetchDisplayNamePopup();
+  }, []);
 
   useEffect(() => {
     const fetchDisplayName = async () => {
@@ -15,7 +25,7 @@ const Login = () => {
   return (
     <div className="login">
       <h2>
-        Welcome {displayName}
+        Welcome {displayName || displayNamePopup}
         <br></br>
         <br></br> You are sucesffuly logged in
       </h2>
